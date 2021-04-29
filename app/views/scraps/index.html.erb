@@ -1,0 +1,8 @@
+<h1>Scraps#index</h1>
+
+<% @scraps.each do |scrap| %>
+  <p>
+    <%= scrap.created_at %><br>
+    <%= scrap.body %>
+  </p>
+<% end %>
