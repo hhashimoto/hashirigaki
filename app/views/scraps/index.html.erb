@@ -1,5 +1,17 @@
 <h1>Scraps#index</h1>
 
+<%= form_with model: @scrap do |form| %>
+  <div>
+    <%= form.text_area :body %>
+    <% @scrap.errors.full_messages_for(:body).each do |message| %>
+      <div><strong><%= message %></strong></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
 <% @scraps.each do |scrap| %>
   <p>
     <%= scrap.created_at %><br>
