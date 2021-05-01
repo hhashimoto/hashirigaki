@@ -18,3 +18,28 @@
     <%= scrap.body %>
   </p>
 <% end %>
+
+<script>
+const form = document.getElementsByTagName('form')[0];
+let pressedCtrl = false;
+const ctrlKey = 17;
+const enterKey = 13;
+form.onkeyup = function(e) {
+  if (e.keyCode == ctrlKey) {
+    pressedCtrl = false;
+  }
+}
+form.onkeydown = function(e) {
+  if (e.isComposing || e.keyCode === 229) {
+    // IMEイベントの無視(https://developer.mozilla.org/ja/docs/Web/API/GlobalEventHandlers/onkeydown)
+    return;
+  }
+  if (e.keyCode == ctrlKey) {
+    pressedCtrl = true;
+    return;
+  }
+  if (e.keyCode == enterKey && pressedCtrl) {
+    form.submit();
+  }
+}
+</script>
