@@ -14,7 +14,7 @@
 
 <% @scraps.each do |scrap| %>
   <p>
-    <%= scrap.created_at %><br>
+    <%= scrap.created_at.localtime %><br>
     <%= scrap.body %>
   </p>
 <% end %>
