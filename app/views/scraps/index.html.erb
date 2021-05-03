@@ -1,4 +1,4 @@
-<h1>Scraps#index</h1>
+<h2>Scraps</h2>
 
 <%= form_with model: @scrap do |form| %>
   <div>
@@ -6,9 +6,7 @@
     <% @scrap.errors.full_messages_for(:body).each do |message| %>
       <div><strong><%= message %></strong></div>
     <% end %>
-  </div>
-  <div>
-    <%= form.submit %>
+    <strong>Ctrl+Enterで投稿できるよ</strong>
   </div>
 <% end %>
 
@@ -20,15 +18,19 @@
 <% end %>
 
 <script>
-const form = document.getElementsByTagName('form')[0];
 let pressedCtrl = false;
 const ctrlKey = 17;
 const enterKey = 13;
+const form = document.getElementsByTagName('form')[0];
+window.onload = function() {
+  // ロード完了時、入力エリアにフォーカスを当てる
+  form.getElementsByTagName('textarea')[0].focus();
+};
 form.onkeyup = function(e) {
   if (e.keyCode == ctrlKey) {
     pressedCtrl = false;
   }
-}
+};
 form.onkeydown = function(e) {
   if (e.isComposing || e.keyCode === 229) {
     // IMEイベントの無視(https://developer.mozilla.org/ja/docs/Web/API/GlobalEventHandlers/onkeydown)
@@ -41,5 +43,5 @@ form.onkeydown = function(e) {
   if (e.keyCode == enterKey && pressedCtrl) {
     form.submit();
   }
-}
+};
 </script>
