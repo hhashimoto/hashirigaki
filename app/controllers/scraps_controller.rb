@@ -1,5 +1,10 @@
 class ScrapsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
+    if user_signed_in?
+      p current_user
+    end
     @scraps = recent_scraps
     @scrap = Scrap.new
   end

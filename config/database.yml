@@ -14,7 +14,6 @@ development:
   adapter: mysql2
   encoding: utf8
   database: hashirigaki
-  pool: 5
   username: developer
   password:
   socket: /var/run/mysqld/mysqld.sock
