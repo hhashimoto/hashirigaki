@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_04_29_163246) do
 
-  create_table "scraps", force: :cascade do |t|
+  create_table "scraps", charset: "utf8mb4", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
