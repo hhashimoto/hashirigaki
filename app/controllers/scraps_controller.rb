@@ -2,15 +2,12 @@ class ScrapsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if user_signed_in?
-      p current_user
-    end
     @scraps = recent_scraps
     @scrap = Scrap.new
   end
 
   def create
-    @scrap = Scrap.new(scrap_params)
+    @scrap = current_user.scraps.new(scrap_params)
     if @scrap.save
       redirect_to scraps_path
     else
@@ -25,6 +22,6 @@ class ScrapsController < ApplicationController
     end
 
     def recent_scraps
-      Scrap.where(created_at: (Time.now - 1.day)..Time.now).order(id: :desc)
+      current_user.scraps.where(created_at: (Time.now - 1.day)..Time.now).order(id: :desc)
     end
 end
